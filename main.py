@@ -22,11 +22,12 @@ df.insert(1, "time", t)
 
 # CF, FZのみ抜き出し
 isModel = df['serial'].str.startswith(("CF", "FZ"))
-df2 = df[isModel]
-print(df2)
+
+# - 削除
+df['serial'] = df[isModel]['serial'].apply(lambda serial: serial.replace('-', ''))
 
 # memoフィールドの英数字を全角から半角に
-df2["memo"] = df2["memo"].apply(lambda str: mojimoji.zen_to_han(str, kana=False))
+df['memo'] = df[isModel]['memo'].apply(lambda str: mojimoji.zen_to_han(str, kana=False))
 
 # df型は列番号をもつので、indexは無視する
-df2.to_csv("dist\\test_20221109.csv", index=False)
+df[isModel].to_csv("dist\\test_20221109.csv", index=False)
