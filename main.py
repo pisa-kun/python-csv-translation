@@ -26,8 +26,7 @@ df2 = df[isModel]
 print(df2)
 
 # memoフィールドの英数字を全角から半角に
-memo = df2["memo"]
-print(memo)
+df2["memo"] = df2["memo"].apply(lambda str: mojimoji.zen_to_han(str, kana=False))
 
 # df型は列番号をもつので、indexは無視する
 df2.to_csv("dist\\test_20221109.csv", index=False)
