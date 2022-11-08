@@ -18,5 +18,10 @@ df.insert(0, "format", f)
 # 日付の追加
 # 2行目に追加
 df.insert(1, "time", t) 
-print(df)
+
+# CF, FZのみ抜き出し
+isModel = df["serial"].str.startswith(("CF", "FZ"))
+print(df[isModel])
+
+#print(df)
 #df.to_csv("dist\\test_20221109.csv")
