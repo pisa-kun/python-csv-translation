@@ -14,3 +14,14 @@
 #### 時刻の計算
 **timedeltaオブジェクトはdatetimeオブジェクトやdateオブジェクトと引き算や足し算などの演算が可能。例えば、1週間前とか10日後の日付や50分後の時刻などを簡単に計算して取得できる。**
 https://note.nkmk.me/python-datetime-usage/
+
+```python
+datetime.datetime.now()
+## 2022-11-11 04:18:08.496290
+## year-month-day hour:minute:second.microsecond
+## YYYY-mm-DD HH:MM:SS.ffffff
+## %Y-%m-%d %H:%M:%S.%f
+
+timestr = "2022-11-11 04:18:08.496290"
+print(datetime.datetime.strptime(timestr, "%Y-%m-%d %H:%M:%S.%f"))
+```
