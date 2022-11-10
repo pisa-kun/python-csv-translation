@@ -32,18 +32,6 @@ df['memo'] = df[isModel]['memo'].apply(lambda str: mojimoji.zen_to_han(str, kana
 df['memo'] = df[isModel]['memo'].apply(lambda str: mojimoji.han_to_zen(str, ascii=False, digit=False))
 
 # JST to UTC
-# def utc_to_jst(timestamp_utc):
-#     datetime_utc = datetime.datetime.strptime(timestamp_utc + "+0000", "%Y-%m-%d %H:%M:%S.%f%z")
-#     datetime_jst = datetime_utc.astimezone(datetime.timezone(datetime.timedelta(hours=+9)))
-#     timestamp_jst = datetime.datetime.strftime(datetime_jst, '%Y-%m-%d %H:%M:%S.%f')
-#     return timestamp_jst
-
-# def jst_to_utc(timestamp_jst):
-#     datetime_jst = datetime.datetime.strptime(timestamp_jst + "+0000", "%Y-%m-%d %H:%M:%S.%f%z")
-#     datetime_utc = datetime_jst.astimezone(datetime.timezone(datetime.timedelta(hours=-9)))
-#     timestamp_utc = datetime.datetime.strftime(datetime_utc, '%Y-%m-%d %H:%M:%S.%f')
-#     return timestamp_utc
-
 jst2utc = datetime.timedelta(hours=-9)
 df['inputdate'] = df[isModel]['inputdate'].apply(lambda str: (datetime.datetime.strptime(str, "%Y-%m-%d %H:%M:%S.%f") + jst2utc))
 
