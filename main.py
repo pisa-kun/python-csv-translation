@@ -28,6 +28,10 @@ df['serial'] = df[isModel]['serial'].apply(lambda serial: serial.replace('-', ''
 
 # memoフィールドの英数字を全角から半角に
 df['memo'] = df[isModel]['memo'].apply(lambda str: mojimoji.zen_to_han(str, kana=False))
+df['memo'] = df[isModel]['memo'].apply(lambda str: mojimoji.han_to_zen(str, ascii=False, digit=False))
+
+# JST to UTC
 
 # df型は列番号をもつので、indexは無視する
 df[isModel].to_csv("dist\\test_20221109.csv", index=False)
+print(df[isModel])
