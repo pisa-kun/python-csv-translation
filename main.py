@@ -3,7 +3,7 @@ import re
 import mojimoji
 import datetime
 
-file = 'src\\test_0001_20221109.csv'
+file = 'src\\test_0001_20221109122531.csv'
 df = pd.read_csv(file, header=0)
 print(df)
 
@@ -11,7 +11,7 @@ print(df)
 m = re.search(r'\d{4}', file)
 f = m.group()
 
-m2 = re.search(r'\d{8}', file)
+m2 = re.search(r'\d{14}', file)
 t = m2.group()
 
 # フォーマットの追加
@@ -19,7 +19,7 @@ t = m2.group()
 df.insert(0, "format", f)
 # 日付の追加
 # 2行目に追加
-df.insert(1, "time", t) 
+df.insert(1, "time", datetime.datetime.strptime(t, "%Y%m%d%H%M%S"))
 
 # CF, FZのみ抜き出し
 isModel = df['serial'].str.startswith(("CF", "FZ"))
@@ -36,4 +36,4 @@ jst2utc = datetime.timedelta(hours=-9)
 df['inputdate'] = df[isModel]['inputdate'].apply(lambda str: (datetime.datetime.strptime(str, "%Y-%m-%d %H:%M:%S.%f") + jst2utc))
 
 # df型は列番号をもつので、indexは無視する
-df[isModel].to_csv("dist\\test_20221109.csv", index=False)
+df[isModel].rename(columns=str.upper).to_csv("dist\\test_20221109122531.csv", index=False)
