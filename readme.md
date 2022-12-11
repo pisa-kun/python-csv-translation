@@ -25,3 +25,10 @@ datetime.datetime.now()
 timestr = "2022-11-11 04:18:08.496290"
 print(datetime.datetime.strptime(timestr, "%Y-%m-%d %H:%M:%S.%f"))
 ```
+
+
+### ファイルの圧縮率
+
+https://ishitonton.hatenablog.com/entry/2020/09/18/000035
+
+- parquetの時点で非圧縮でも圧縮率は高い

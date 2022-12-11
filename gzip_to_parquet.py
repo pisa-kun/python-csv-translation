@@ -22,9 +22,18 @@ df2 = pd.read_csv('foo.test.csv.gz', sep='\t', header=0)
 print(df2)
 
 # step3 write parquet
+#https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_parquet.html
 df2.to_parquet("foo.parquet")
+df2.to_parquet("foo.gz.parquet", compression="gzip")
+df2.to_parquet("foo.snappy.parquet", compression="snappy")
+# 無圧縮
+df2.to_parquet("foo.n.parquet", compression=None)
 
 # step4 read parquet
 print("read parquet")
 df3 = pd.read_parquet("foo.parquet")
 print(df3)
+
+print("comp none parquet")
+df4 = pd.read_parquet("foo.n.parquet")
+print(df4)
