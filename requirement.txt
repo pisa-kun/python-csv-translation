@@ -1,3 +1,4 @@
 pandas
 mojimoji
 pyarrow
+boto3
